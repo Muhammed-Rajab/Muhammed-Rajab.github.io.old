@@ -1,0 +1,66 @@
+@import "https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --body-backgroud-color: black;
+  --terminal-green: #8ae234;
+  --terminal-blue: #729fce;
+  --terminal-white: #fff;
+  --terminal-grey: #666;
+  --saffron: #f93;
+  --white: #fff;
+  --green: #8ae234;
+  --red: #d52a1f;
+  --js: #ecdc56;
+  --ts: #3d6f9e;
+  --cs: #05930c;
+  --py: #3d6f9e;
+  --postgresql: #3d6f9e;
+  --mongo: #18ac51;
+  --redis: #d52a1f;
+  --fast-api: #1e9184;
+  --express: #3b4954;
+  --node: #689f63;
+  --react: #6edafa;
+  --html: #ec662a;
+  --css: #3b48e3;
+  --tailwind: #4ebcf7;
+  --bs: #8f00fa;
+  --linux: #ffe400;
+  --git: #ec662a;
+  --docker: #4ebcf7;
+  --link-color: #4ebcf7;
+}
+
+body {
+  background-color: var(--body-backgroud-color);
+  font-family: Fira Code, monospace;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181818;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--terminal-grey);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/*# sourceMappingURL=index.1341b175.css.map */

@@ -1,0 +1,1 @@
+{"mappings":"AAAA;;;;AAGA;;;;AAGA","sources":["stylesheets/utility.css"],"sourcesContent":[".d-flex {\r\n    display: flex;\r\n}\r\n.fd-col {\r\n    flex-direction: column;\r\n}\r\n.fd-row {\r\n    flex-direction: row;\r\n}\r\n"],"names":[],"version":3,"file":"index.bdd4027f.css.map","sourceRoot":"/__parcel_source_root/"}

@@ -1,0 +1,13 @@
+.d-flex {
+  display: flex;
+}
+
+.fd-col {
+  flex-direction: column;
+}
+
+.fd-row {
+  flex-direction: row;
+}
+
+/*# sourceMappingURL=index.bdd4027f.css.map */
