@@ -224,7 +224,7 @@
 
 .projects-list {
   flex-wrap: wrap;
-  column-gap: 1.5rem;
+  gap: 1.5rem;
   margin-top: 1.5rem;
 }
 
