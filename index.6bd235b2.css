@@ -67,4 +67,14 @@
   }
 }
 
+@media only screen and (max-width: 986px) {
+  .skill-lists-container {
+    flex-direction: column;
+  }
+
+  .skill-list {
+    width: 100%;
+  }
+}
+
 /*# sourceMappingURL=index.6bd235b2.css.map */
