@@ -688,10 +688,9 @@ async function fetchAndUpdateSkillsData() {
     const SKILLS_URL = "https://raw.githubusercontent.com/Muhammed-Rajab/Muhammed-Rajab.github.io/master/data/skills.json";
     const skillListContainer = document.querySelector(".skill-lists-container");
     const skillsData = await (0, _utilsJs.fetchAndParseJSON)(SKILLS_URL);
-    skillListsHtml = Object.keys(skillsData).map((key)=>generateSkillList(key, skillsData[key])).join("\n\n");
     setTimeout(()=>{
-        skillListContainer.innerHTML = skillListsHtml;
-    }, 100);
+        skillListContainer.innerHTML = Object.keys(skillsData).map((key)=>generateSkillList(key, skillsData[key])).join("\n\n");
+    }, 200);
 }
 
 },{"./utils.js":"5Zwrt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["foMn7","8VGZO"], "8VGZO", "parcelRequire5163")
