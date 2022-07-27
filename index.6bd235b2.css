@@ -77,4 +77,10 @@
   }
 }
 
+@media only screen and (max-width: 576px) {
+  .project-card {
+    width: 100%;
+  }
+}
+
 /*# sourceMappingURL=index.6bd235b2.css.map */

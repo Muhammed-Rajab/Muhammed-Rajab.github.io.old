@@ -10,4 +10,44 @@
   flex-direction: row;
 }
 
+.w-100 {
+  width: 100%;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 8px solid #363636;
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+.loader-wrapper {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.oy-hidden {
+  overflow-y: hidden;
+}
+
 /*# sourceMappingURL=index.bdd4027f.css.map */

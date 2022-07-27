@@ -532,7 +532,168 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"8VGZO":[function(require,module,exports) {
+var _projectsJs = require("./projects.js");
+var _skillsJs = require("./skills.js");
+var _utilsJs = require("./utils.js");
+window.addEventListener("load", async ()=>{
+    const loadingScreen = document.querySelector(".loading-screen");
+    const bgSwitcherBtn = document.querySelector(".bg-switcher");
+    const colors = [
+        "#000000",
+        "#300A24",
+        "#222222",
+        "#002b36"
+    ];
+    if (localStorage.getItem("bg-color")) {
+        const bgColor = localStorage.getItem("bg-color");
+        document.body.style.backgroundColor = bgColor;
+        bgSwitcherBtn.style.backgroundColor = bgColor;
+        loadingScreen.style.backgroundColor = bgColor;
+        bgSwitcherBtn.dataset.index = colors.findIndex((val)=>bgColor);
+    } else {
+        bgSwitcherBtn.style.backgroundColor = "black";
+        bgSwitcherBtn.dataset.index = "0";
+    }
+    await (0, _skillsJs.fetchAndUpdateSkillsData)();
+    await (0, _projectsJs.fetchAndUpdateProjectsData)();
+    setTimeout(()=>{
+        (0, _utilsJs.hideLoadingScreen)();
+    }, 600);
+    // Adding code to change background on clickign button
+    bgSwitcherBtn.addEventListener("click", function() {
+        const colorIndex = this.dataset.index;
+        const nextColorIndex = +colorIndex + 1 < colors.length ? +colorIndex + 1 : 0;
+        document.body.style.backgroundColor = this.style.backgroundColor = colors[nextColorIndex];
+        this.dataset.index = nextColorIndex;
+        console.log(nextColorIndex, +colorIndex);
+        localStorage.setItem("bg-color", colors[nextColorIndex]);
+    });
+});
 
-},{}]},["foMn7","8VGZO"], "8VGZO", "parcelRequire5163")
+},{"./projects.js":"4x9yv","./skills.js":"bCYpv","./utils.js":"5Zwrt"}],"4x9yv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "generateProjectCard", ()=>generateProjectCard);
+parcelHelpers.export(exports, "fetchAndUpdateProjectsData", ()=>fetchAndUpdateProjectsData);
+var _utilsJs = require("./utils.js");
+function generateProjectCard(project) {
+    return `<div class="d-flex fd-col project-card">
+    <h1 class="project-title">${project.title}</h1>
+    <div class="d-flex project-tags">
+        ${project.tags.map((tag)=>`<p class="project-tag">#${tag}</p>`).join("\n")}
+    </div>
+    <p class="project-desc">${project.desc}</p>
+    <div class="d-flex project-links">
+        <a
+            href="${project.liveDemoUrl}"
+            class="project-link"
+            target="_blank"
+            >Live demo</a
+        >
+        <a
+            href="${project.sourceCodeUrl}"
+            class="project-link"
+            target="_blank"
+            >Source code</a
+        >
+    </div>
+</div>`;
+}
+async function fetchAndUpdateProjectsData() {
+    const PROJECTS_URL = "https://raw.githubusercontent.com/Muhammed-Rajab/Muhammed-Rajab.github.io/master/data/projects.json";
+    const projectsList = document.querySelector(".projects-list");
+    const projectsData = await (0, _utilsJs.fetchAndParseJSON)(PROJECTS_URL);
+    const projectsCardHtml = projectsData.map((project)=>generateProjectCard(project)).join("\n");
+    setTimeout(()=>{
+        projectsList.innerHTML = projectsCardHtml;
+    }, 100);
+}
+
+},{"./utils.js":"5Zwrt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5Zwrt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "fetchAndParseJSON", ()=>fetchAndParseJSON);
+parcelHelpers.export(exports, "hideLoadingScreen", ()=>hideLoadingScreen);
+parcelHelpers.export(exports, "switchBackgroundColor", ()=>switchBackgroundColor);
+async function fetchAndParseJSON(url) {
+    try {
+        const res = await fetch(url);
+        if (res.status === 404) throw new Error("Can't fetch data from GitHub");
+        const data = await res.json();
+        return data;
+    } catch (e) {
+        return {
+            error: e.message
+        };
+    }
+}
+function hideLoadingScreen() {
+    document.body.classList.remove("oy-hidden");
+    document.querySelector("#root").style.display = "flex";
+    document.querySelector(".loading-screen").style.display = "none";
+}
+function switchBackgroundColor() {
+/*
+        Check if background color is present in the localStorage
+        If present, then set it as background of body and of the bg-switcher button.
+
+        else on clicking the bg-switcher button, get index data property of the button and change background color to index+1 if index < colors.length else index = 0;
+    */ }
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, "__esModule", {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === "default" || key === "__esModule" || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"bCYpv":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "generateSkillList", ()=>generateSkillList);
+parcelHelpers.export(exports, "fetchAndUpdateSkillsData", ()=>fetchAndUpdateSkillsData);
+var _utilsJs = require("./utils.js");
+function generateSkillList(title, skills) {
+    return `<div class="d-flex fd-col skill-list">
+    <span class="skill-title">${title}</span>
+    <div class="d-flex fd-row skills">
+        ${skills.map((sk)=>`<div style="border: 4px solid ${sk.color}; color: ${sk.color};" class="skill-js">${sk.title.toUpperCase()}</div>`).join("\n		")}
+    </div>
+</div>`;
+}
+async function fetchAndUpdateSkillsData() {
+    const SKILLS_URL = "https://raw.githubusercontent.com/Muhammed-Rajab/Muhammed-Rajab.github.io/master/data/skills.json";
+    const skillListContainer = document.querySelector(".skill-lists-container");
+    const skillsData = await (0, _utilsJs.fetchAndParseJSON)(SKILLS_URL);
+    skillListsHtml = Object.keys(skillsData).map((key)=>generateSkillList(key, skillsData[key])).join("\n\n");
+    setTimeout(()=>{
+        skillListContainer.innerHTML = skillListsHtml;
+    }, 100);
+}
+
+},{"./utils.js":"5Zwrt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["foMn7","8VGZO"], "8VGZO", "parcelRequire5163")
 
 //# sourceMappingURL=index.f71e6048.js.map

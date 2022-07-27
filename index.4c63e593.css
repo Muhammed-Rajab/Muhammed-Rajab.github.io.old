@@ -1,7 +1,80 @@
+.bg-switcher {
+  width: 28px;
+  height: 28px;
+  background-color: #000;
+  border: 3px solid #fff;
+  border-radius: 100%;
+  position: absolute;
+  top: 25px;
+  right: 25px;
+}
+
+.loading-screen {
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  z-index: 100;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.loading-screen-animation-class {
+  animation: loading-screen-hide 2s linear backwards;
+}
+
+.loading-screen-squares-wrapper {
+  column-gap: 10px;
+  margin-top: 1rem;
+}
+
+.loading-screen-square {
+  width: 12px;
+  height: 12px;
+}
+
+.loading-screen-square:nth-child(1) {
+  animation: loading-screen-square-animation 1s ease-in-out infinite;
+}
+
+.loading-screen-square:nth-child(2) {
+  animation: loading-screen-square-animation 2s ease-in-out infinite;
+}
+
+.loading-screen-square:nth-child(3) {
+  animation: loading-screen-square-animation 3s ease-in-out infinite;
+}
+
+@keyframes loading-screen-hide {
+  0% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes loading-screen-square-animation {
+  from {
+    border: 3px solid #fff;
+  }
+
+  to {
+    border: 0 solid #000;
+  }
+}
+
 #root {
   width: 100vw;
   min-height: 100vh;
   color: var(--white);
+  display: none;
 }
 
 .social-media-sidebar {
@@ -123,102 +196,13 @@
 .skills {
   flex-wrap: wrap;
   gap: 10px;
+  margin-top: 8px;
 }
 
 .skills div {
   text-transform: uppercase;
   padding: 10px 15px;
   font-weight: 900;
-}
-
-.skill-js {
-  color: var(--js);
-  border: 4px solid var(--js);
-}
-
-.skill-py {
-  color: var(--py);
-  border: 4px solid var(--py);
-}
-
-.skill-cs {
-  color: var(--cs);
-  border: 4px solid var(--cs);
-}
-
-.skill-ts {
-  color: var(--ts);
-  border: 4px solid var(--ts);
-}
-
-.skill-react {
-  color: var(--react);
-  border: 4px solid var(--react);
-}
-
-.skill-html {
-  color: var(--html);
-  border: 4px solid var(--html);
-}
-
-.skill-css {
-  color: var(--css);
-  border: 4px solid var(--css);
-}
-
-.skill-tailwind {
-  color: var(--tailwind);
-  border: 4px solid var(--tailwind);
-}
-
-.skill-bs {
-  color: var(--bs);
-  border: 4px solid var(--bs);
-}
-
-.skill-fastapi {
-  color: var(--fast-api);
-  border: 4px solid var(--fast-api);
-}
-
-.skill-express {
-  color: var(--express);
-  border: 4px solid var(--express);
-}
-
-.skill-node {
-  color: var(--node);
-  border: 4px solid var(--node);
-}
-
-.skill-mongo {
-  color: var(--mongo);
-  border: 4px solid var(--mongo);
-}
-
-.skill-postgresql {
-  color: var(--postgresql);
-  border: 4px solid var(--postgresql);
-}
-
-.skill-redis {
-  color: var(--redis);
-  border: 4px solid var(--redis);
-}
-
-.skill-linux {
-  color: var(--linux);
-  border: 4px solid var(--linux);
-}
-
-.skill-git {
-  color: var(--git);
-  border: 4px solid var(--git);
-}
-
-.skill-docker {
-  color: var(--docker);
-  border: 4px solid var(--docker);
 }
 
 .projects-section-title {
@@ -235,11 +219,26 @@
 }
 
 .project-card {
-  width: 250px;
+  width: 45%;
   border: 4px solid var(--white);
   justify-content: space-between;
-  row-gap: 10px;
+  row-gap: 0;
   padding: 15px;
+}
+
+.project-tags {
+  text-transform: lowercase;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 9px;
+  padding: 4px;
+}
+
+.project-tag {
+  background-color: #484848;
+  padding: 6px;
+  font-size: .8rem;
+  display: inline-block;
 }
 
 .project-desc {
@@ -249,6 +248,7 @@
 
 .project-links {
   justify-content: space-between;
+  margin-top: 10px;
 }
 
 .project-link {
